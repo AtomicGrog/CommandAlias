@@ -1,4 +1,4 @@
-package grogware.commandalias;
+package com.grogware.commandalias;
 
 import grogware.commandalias.config.ConfigHandler;
 import net.minecraft.client.Minecraft;
@@ -114,7 +114,7 @@ public class CommandHandler implements ICommand {
                                             for (int x=2; x<strings.length; x++) {
                                                 newCommandLine.append(strings[x]+" ");
                                             }
-                                            Minecraft.getMinecraft().player.sendChatMessage("new alias " + newAlias + " added);
+                                            Minecraft.getMinecraft().player.sendChatMessage("new alias " + newAlias + " added");
                                             config.writeConfig("aliases", newAlias, newCommandLine.toString().trim());
                                         }
                                     }

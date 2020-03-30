@@ -1,4 +1,4 @@
-package grogware.commandalias.config;
+package com.grogware.commandalias.config;
 
 import java.io.File;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package grogware.commandalias;
+package com.grogware.commandalias;
 
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.common.Mod;
