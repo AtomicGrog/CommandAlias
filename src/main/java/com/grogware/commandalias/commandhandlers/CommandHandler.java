@@ -8,6 +8,8 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.command.ICommand;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 import java.util.List;
@@ -60,15 +62,18 @@ public class CommandHandler extends CommandBase {
     @Override
     public void execute(MinecraftServer minecraftServer, ICommandSender iCommandSender, String[] strings) throws CommandException {
 
-        if(active) {
-            StringBuffer commandLine = new StringBuffer("");
-
-            for (String entry : strings) {
-                commandLine.append(entry).append(" ");
+        if(isEnabled()) {
+            if(active) {
+                StringBuffer commandLine = new StringBuffer("");
+                for (String entry : strings) {
+                    commandLine.append(entry).append(" ");
+                }
+                Minecraft.getMinecraft().player.sendChatMessage(alias + " " + commandLine.toString().trim());
             }
-
-            //Minecraft.getMinecraft().player.sendChatMessage("trying <"+alias + " " + commandLine.toString().trim()+">");
-            Minecraft.getMinecraft().player.sendChatMessage(alias + " " + commandLine.toString().trim());
+        }
+        else if (isVerbose())
+        {
+            iCommandSender.sendMessage(new TextComponentString(TextFormatting.YELLOW + "hint: no action taken, aliases disabled"));
         }
     }
 
@@ -76,7 +81,23 @@ public class CommandHandler extends CommandBase {
         return active;
     };
 
-    private void setInactive() {
+    public void setInactive() {
         active = false;
+    }
+
+    boolean isEnabled() {
+        if(config.hasKey("settings", "enabled")) {
+            return config.getBoolean("settings", "enabled");
+        } else {
+            return true;
+        }
+    }
+
+    boolean isVerbose() {
+        if(config.hasKey("settings", "verbose")) {
+            return config.getBoolean("settings", "verbose");
+        } else {
+            return true;
+        }
     }
 }
