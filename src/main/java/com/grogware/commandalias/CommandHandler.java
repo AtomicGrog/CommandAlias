@@ -1,6 +1,6 @@
 package com.grogware.commandalias;
 
-import grogware.commandalias.config.ConfigHandler;
+import com.grogware.commandalias.config.ConfigHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;

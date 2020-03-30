@@ -4,7 +4,7 @@ import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.client.ClientCommandHandler;
-import grogware.commandalias.config.ConfigHandler;
+import com.grogware.commandalias.config.ConfigHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
 import java.util.Map;
