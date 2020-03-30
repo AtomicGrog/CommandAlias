@@ -183,10 +183,10 @@ public class ConfigHandler {
             config.load();
             if(!config.hasCategory(category)) {
                 System.out.println("**** no category in config:" + category + " ****");
-                writeConfig("aliases","alias", "internal");
+            } else {
+                content = config.getCategory(category).getValues().entrySet();
+                return content;
             }
-            content = config.getCategory(category).getValues().entrySet();
-            return content;
         } catch (Exception e) {
             System.out.println("Cannot load configuration file!");
         } finally {

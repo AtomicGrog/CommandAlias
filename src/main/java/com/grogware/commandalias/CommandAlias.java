@@ -1,5 +1,7 @@
 package com.grogware.commandalias;
 
+import com.grogware.commandalias.commandhandlers.CommandHandler;
+import com.grogware.commandalias.commandhandlers.ExecCommandHandler;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -35,7 +37,11 @@ public class CommandAlias {
 
         if (event.getSide() == Side.CLIENT) {
 
-        System.out.println("***** READING CONFIG!!! *****");
+        //setup the 'alias' command as a exec command (i.e. cannot be removed)
+        ClientCommandHandler.instance.registerCommand(new ExecCommandHandler("alias"));
+
+
+            // System.out.println("***** READING CONFIG!!! *****");
         //Iterate though the aliases each will be part of an alias section, names dont matter, context for each is alias=command
         Set<Map.Entry<String, Property>> aliases = config.getCategoryContent("aliases");
 
@@ -44,9 +50,6 @@ public class CommandAlias {
                 System.out.println(entry.getKey() + ":" + entry.getValue().getString());
                 ClientCommandHandler.instance.registerCommand(new CommandHandler(entry.getKey().toString(), entry.getValue().getString()));
             }
-        } else {
-            System.out.println("******  Aliases was null!!!! ********");
-            config.writeConfig("aliases", "home","help");
         }
 
         // Loading default commands + users defined aliases;
@@ -54,7 +57,6 @@ public class CommandAlias {
         // Default;
         //    ClientCommandHandler.instance.registerCommand(new CommandHandler("alias"));
         // User defined
-          ClientCommandHandler.instance.registerCommand(new CommandHandler("boo", "/me says boo"));
         }
 
  //       syncConfig();
