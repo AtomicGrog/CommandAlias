@@ -114,7 +114,7 @@ public class CommandHandler implements ICommand {
                                             for (int x=2; x<strings.length; x++) {
                                                 newCommandLine.append(strings[x]+" ");
                                             }
-                                            Minecraft.getMinecraft().player.sendChatMessage("new alias added: " + newAlias + ": " + newCommandLine.toString().trim());
+                                            Minecraft.getMinecraft().player.sendChatMessage("new alias " + newAlias + " added);
                                             config.writeConfig("aliases", newAlias, newCommandLine.toString().trim());
                                         }
                                     }
@@ -126,12 +126,12 @@ public class CommandHandler implements ICommand {
                                     } else {
                                         String oldAlias = strings[1];
 
-                                        if (!config.hasKey("aliases", newAlias)) {
+                                        if (!config.hasKey("aliases", oldAlias)) {
                                             Minecraft.getMinecraft().player.sendChatMessage("alias " + oldAlias + " does not exist");
                                         }
                                         else {
-                                            config.removeConfig("aliases", newAlias);
-                                            Minecraft.getMinecraft().player.sendChatMessage("alias command = " + oldAlias + " removed");
+                                            config.removeConfig("aliases", oldAlias);
+                                            Minecraft.getMinecraft().player.sendChatMessage("alias " + oldAlias + " removed");
                                         }
                                     }
                                     break;
@@ -148,7 +148,6 @@ public class CommandHandler implements ICommand {
                 break;
             }
             default: {
-                //Minecraft.getMinecraft().player.sendChatMessage("You said the command: " + alias + " " + commandLine.toString().trim());
                 Minecraft.getMinecraft().player.sendChatMessage(alias + " " + commandLine.toString().trim());
             }
         }
