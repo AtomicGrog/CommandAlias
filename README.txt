@@ -1,3 +1,5 @@
+**** Dont clone from here... it's defunct, use the MC version branch *****
+
 A basic MC 1.12.* mod that allows command aliases to be created i.e: "/samplecommand" can be defined to type any command or text sequence as though the player had done it themselves.
 
 I developed this initially because I use a lot of "/home xxx" type commands in the packs I play and it would be nice simpify i.e.
