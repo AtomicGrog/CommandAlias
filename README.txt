@@ -1,62 +1,27 @@
--------------------------------------------
-Source installation information for modders
--------------------------------------------
-This code follows the Minecraft Forge installation methodology. It will apply
-some small patches to the vanilla MCP source code, giving you and it access 
-to some of the data and functions you need to build a successful mod.
+A basic MC 1.12.* mod that allows command aliases to be created i.e: "/samplecommand" can be defined to type any command or text sequence as though the player had done it themselves.
 
-Note also that the patches are built against "unrenamed" MCP source code (aka
-srgnames) - this means that you will not be able to read them directly against
-normal code.
+I developed this initially because I use a lot of "/home xxx" type commands in the packs I play and it would be nice simpify i.e.
 
-Source pack installation information:
+"/ae2" as an alias of "/home ae2"
+and
+"/nether" as an alias of "/home nether"
 
-Standalone source installation
-==============================
+Having done that it became apparent that additional aliases are nice:
 
-See the Forge Documentation online for more detailed instructions:
-http://mcforge.readthedocs.io/en/latest/gettingstarted/
+"/day" as an alias of "/time set day" and so on.
 
-Step 1: Open your command-line and browse to the folder where you extracted the zip file.
+I doubt this mod is unique, its probably a subset of abilities in other mods but to date i've never actually made a mod (i've fixed plenty...) and never seen these features.
 
-Step 2: Once you have a command window up in the folder that the downloaded material was placed, type:
+Am aware that some might see this as exploitable. Expectially in pvp where having shortcuts would be an advantage. To that i'd say that this would probably be the least of your worries, if a server was to allow clients to add mods this would be a pretty safe one compared to what could be used to cheat in pvp.
 
-Windows: "gradlew setupDecompWorkspace"
-Linux/Mac OS: "./gradlew setupDecompWorkspace"
+Note(s):
+-----
 
-Step 3: After all that finished, you're left with a choice.
-For eclipse, run "gradlew eclipse" (./gradlew eclipse if you are on Mac/Linux)
+The commands you alias follow MC chat syntax i.e. if you want to perform an actual command rather than just type in chat then you need to pre-fix it with the / yourself.
 
-If you prefer to use IntelliJ, steps are a little different.
-1. Open IDEA, and import project.
-2. Select your build.gradle file and have it import.
-3. Once it's finished you must close IntelliJ and run the following command:
+Other potential issues at this point:
+-------------------------------------
 
-"gradlew genIntellijRuns" (./gradlew genIntellijRuns if you are on Mac/Linux)
+It's likely that with a lack of checks that commands/aliases could be added that cant effectively be stored in a json config file. Nothing at this stage will stop you using json markup characters etc, and result could be a corrupt config file.
 
-Step 4: The final step is to open Eclipse and switch your workspace to /eclipse/ (if you use IDEA, it should automatically start on your project)
-
-If at any point you are missing libraries in your IDE, or you've run into problems you can run "gradlew --refresh-dependencies" to refresh the local cache. "gradlew clean" to reset everything {this does not affect your code} and then start the processs again.
-
-Should it still not work, 
-Refer to #ForgeGradle on EsperNet for more information about the gradle environment.
-
-Tip:
-If you do not care about seeing Minecraft's source code you can replace "setupDecompWorkspace" with one of the following:
-"setupDevWorkspace": Will patch, deobfuscate, and gather required assets to run minecraft, but will not generate human readable source code.
-"setupCIWorkspace": Same as Dev but will not download any assets. This is useful in build servers as it is the fastest because it does the least work.
-
-Tip:
-When using Decomp workspace, the Minecraft source code is NOT added to your workspace in a editable way. Minecraft is treated like a normal Library. Sources are there for documentation and research purposes and usually can be accessed under the 'referenced libraries' section of your IDE.
-
-Forge source installation
-=========================
-MinecraftForge ships with this code and installs it as part of the forge
-installation process, no further action is required on your part.
-
-LexManos' Install Video
-=======================
-https://www.youtube.com/watch?v=8VEdtQLuLO0&feature=youtu.be
-
-For more details update more often refer to the Forge Forums:
-http://www.minecraftforge.net/forum/index.php/topic,14048.0.html
+This is kinda pre-alpha... no real testing to date. But its lightweight and developed for fun. If you dont like it or it causes problems i'd simply suggest you delete it.
