@@ -16,7 +16,7 @@ import java.util.Set;
  * @author AtomicGrog
  */
 
-@Mod(modid= CommandAlias.MODID, name= CommandAlias.MODNAME, clientSideOnly=true, guiFactory="grogware.commandalias.config.CommBindGuiFactory", acceptedMinecraftVersions = "[1.12.2,1.13)")
+@Mod(modid= CommandAlias.MODID, name= CommandAlias.MODNAME, clientSideOnly=true, acceptedMinecraftVersions = "[1.12.2,1.13)")
 
 public class CommandAlias {
     public static final String MODID="commandalias";

@@ -62,18 +62,14 @@ public class CommandHandler extends CommandBase {
     @Override
     public void execute(MinecraftServer minecraftServer, ICommandSender iCommandSender, String[] strings) throws CommandException {
 
-        if(isEnabled()) {
-            if(active) {
-                StringBuffer commandLine = new StringBuffer("");
-                for (String entry : strings) {
-                    commandLine.append(entry).append(" ");
-                }
-                Minecraft.getMinecraft().player.sendChatMessage(alias + " " + commandLine.toString().trim());
+        if(isEnabled() && isActive()) {
+            StringBuffer commandLine = new StringBuffer("");
+            for (String entry : strings) {
+                commandLine.append(entry).append(" ");
             }
-        }
-        else if (isVerbose())
-        {
-            iCommandSender.sendMessage(new TextComponentString(TextFormatting.YELLOW + "hint: no action taken, aliases disabled"));
+            Minecraft.getMinecraft().player.sendChatMessage(alias + " " + commandLine.toString().trim());
+        } else if(isVerbose()) {
+            iCommandSender.sendMessage(new TextComponentString(TextFormatting.YELLOW + "hint: no action taken, command "+ alias + " disabled"));
         }
     }
 

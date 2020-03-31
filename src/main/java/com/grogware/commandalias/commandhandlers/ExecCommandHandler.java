@@ -115,7 +115,7 @@ public class ExecCommandHandler extends CommandBase {
         else {
             Set<Map.Entry<String, Property>> aliases = config.getCategoryContent("aliases");
 
-            if(aliases != null) {
+            if(aliases != null && aliases.size() > 0) {
                 for (Map.Entry<String, Property> entry : aliases) {
                     iCommandSender.sendMessage(new TextComponentString(TextFormatting.YELLOW +
                             "Alias '" + entry.getKey() + "': '" + entry.getValue().getString()+"'"));
@@ -161,10 +161,14 @@ public class ExecCommandHandler extends CommandBase {
             else {
                 config.removeConfig("aliases", oldAlias);
                 if(isVerbose()) iCommandSender.sendMessage(new TextComponentString(TextFormatting.YELLOW + "alias " + oldAlias + " removed"));
-                if(isVerbose()) iCommandSender.sendMessage(new TextComponentString(TextFormatting.YELLOW + "alias: Not command will not be removed or be re-usable until client has been restarted"));
-                Map<String, ICommand> commands = ClientCommandHandler.instance.getCommands();
 
-                ((CommandHandler) commands.get(oldAlias)).setInactive(); // quite presumptious...
+                try {
+                    Map<String, ICommand> commands = ClientCommandHandler.instance.getCommands();
+                    ((CommandHandler) commands.get(oldAlias)).setInactive(); // quite presumptious...
+                }
+                catch (Exception e) {
+                    iCommandSender.sendMessage(new TextComponentString(TextFormatting.RED + "unable to remove " + oldAlias + " from client session, a restart will resolv"));
+                }
             }
         }
     }
